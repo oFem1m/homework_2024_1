@@ -1,29 +1,5 @@
 'use strict';
 
-function inverse(arr, num) {
-    if (!Array.isArray(arr)) {
-        throw new Error('Переданный аргумент не является массивом');
-    }
-
-    const length = arr.length;
-
-    if (num === undefined) {
-        return arr.slice().reverse();
-    } else if (typeof num === 'number') {
-        if (num >= 0) {
-            const reversedPart = arr.slice(num, length).reverse();
-            const restPart = arr.slice(0, num);
-            return restPart.concat(reversedPart);
-        } else {
-            const reversedPart = arr.slice(0, num).reverse();
-            const restPart = arr.slice(num);
-            return reversedPart.concat(restPart);
-        }
-    } else {
-        throw new Error('Второй аргумент должен быть числом или отсутствовать');
-    }
-}
-
 QUnit.module('Тестируем функцию inverse', function () {
     QUnit.test('Функция работает с пустым массивом', function (assert) {
         assert.deepEqual(inverse([]), []);
