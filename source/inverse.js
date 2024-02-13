@@ -1,29 +1,15 @@
 'use strict';
 
 function inverse(arr, num) {
-    try {
-        if (!Array.isArray(arr))
-            throw new Error('Переданный аргумент не является массивом');
+    if (!Array.isArray(arr)) return null;
 
-        if (!num) return arr.slice().reverse();
+    if (!num) return arr.slice().reverse();
 
-        if (typeof num !== 'number')
-            throw new Error('Второй аргумент должен быть числом или отсутствовать');
+    // пока не особо понимаю, как можно компактнее реализовать проверку на наличие второго аргумента
+    if (typeof num !== 'number') return null;
 
-    } catch (error) {
-        throw error;
-    }
-    if (num >= 0) {
-        const reversedPart = arr.slice(num, arr.length).reverse();
-        const restPart = arr.slice(0, num);
+    const reversedPart = (num >= 0) ? arr.slice(num, arr.length).reverse() : arr.slice(0, num).reverse();
+    const restPart = (num >= 0) ? arr.slice(0, num) : arr.slice(num);
 
-        return restPart.concat(reversedPart);
-    }
-
-    if (num < 0) {
-        const reversedPart = arr.slice(0, num).reverse();
-        const restPart = arr.slice(num);
-
-        return reversedPart.concat(restPart);
-    }
+    return (num >= 0) ? restPart.concat(reversedPart) : reversedPart.concat(restPart);
 }

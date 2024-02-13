@@ -35,10 +35,10 @@ QUnit.module('Тестируем функцию inverse', function () {
     });
 
     QUnit.test('Функция выбрасывает ошибку при передаче не массива', function (assert) {
-        assert.throws(() => inverse('не массив'), /Переданный аргумент не является массивом/);
+        assert.deepEqual(inverse('не массив'), null);
     });
 
     QUnit.test('Функция выбрасывает ошибку при передаче некорректного второго аргумента', function (assert) {
-        assert.throws(() => inverse([1, 2, 3], 'не число'), /Второй аргумент должен быть числом или отсутствовать/);
+        assert.deepEqual(inverse([1, 2, 3], 'не число'), null);
     });
 });
