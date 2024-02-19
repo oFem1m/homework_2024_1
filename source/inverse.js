@@ -9,7 +9,7 @@
  * @returns {Array|null} - Новый массив с измененным порядком элементов или null, если входные данные
  *   ошибочны.
  */
-function inverse(arr, num) {
+const inverse = (arr, num) => {
     if (!Array.isArray(arr) || (num && typeof num !== 'number')) {
         return null;
     }
