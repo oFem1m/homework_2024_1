@@ -13,7 +13,7 @@ Object.defineProperty(Array.prototype, 'size', {
     },
     set: function(value) {
         if (value < 0) {
-            throw new RangeError('Размер массива не может быть отрицательным');
+            throw new RangeError('Invalid array length');
         } else if (value < this.size) {
             this.splice(value);
         } else if (value > this.size) {
