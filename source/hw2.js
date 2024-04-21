@@ -3,18 +3,42 @@
 
 Object.defineProperty(Array.prototype, 'size', {
     get: function() {
-        return this.length;
+        let count = 0;
+        for (let i in this) {
+            if (this.hasOwnProperty(i) && !isNaN(parseInt(i))) {
+                count++;
+            }
+        }
+        return count;
     },
     set: function(value) {
         if (value < 0) {
             throw new RangeError('Размер массива не может быть отрицательным');
-        } else if (value < this.length) {
+        } else if (value < this.size) {
             this.splice(value);
-        } else if (value > this.length) {
-            this.length = value;
+        } else if (value > this.size) {
+            this[value - 1] = undefined;
         }
     }
 });
+
+
+class Car {
+    constructor(brand, model, year) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+    }
+}
+
+let cars = [
+    new Car('Toyota', 'Camry', 2020),
+    new Car('Tesla', 'Model S', 2022),
+    new Car('BMW', 'X5', 2019)
+];
+
+
+console.log(cars.size)
 
 
 // #1
